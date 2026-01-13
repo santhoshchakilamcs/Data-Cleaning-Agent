@@ -1,0 +1,17 @@
+product_name,u_price,quantity,sale_date,customer_email,region
+Widget A,$50,10,2024-01-15,john@email.com,North
+Widget B,Free,5,01/16/2024,JANE@EMAIL.COM,south
+Widget A,$45.99,3,2024-01-17,bob@email.com,North
+Gadget X,$120.50,,2024/01/18,alice@email.com,East
+Widget B,$0,8,2024-01-19,,West
+Widget A,50.00,2,2024-01-20,charlie@email.com,NORTH
+Gadget X,$120.5,1,2024-01-21,dave@email.com,east
+Widget A,$50,10,2024-01-15,john@email.com,North
+Widget C,$99.99,-2,invalid_date,eve@email,South
+Gadget Y,$ 200,4,2024-01-23,frank@email.com,West
+Widget A,$50.0,0,2024-01-24,grace@email.com,north
+Widget B,FREE,6,2024-01-25,henry@email.com,South
+Gadget X,$120.50,1,2024-01-26,,East
+Widget A,45.99,3,2024-01-27,iris@email.com,North
+Widget D,$300,100,2024-01-28,spam@spam.spam,North
+

@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "auto-janitor"
+version = "0.1.0"
+description = "An autonomous AI agent for automatic data cleaning using ReAct loop"
+authors = ["Santhosh"]
+readme = "README.md"
+packages = [{include = "auto_janitor"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2.0"
+polars = "^0.20.0"
+openai = "^1.12.0"
+anthropic = "^0.18.0"
+python-dotenv = "^1.0.0"
+pydantic = "^2.6.0"
+rich = "^13.7.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+black = "^24.1.0"
+ruff = "^0.2.0"
+ipython = "^8.21.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+

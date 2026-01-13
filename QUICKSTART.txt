@@ -1,0 +1,122 @@
+AUTO-JANITOR - QUICK START GUIDE
+=================================
+
+An autonomous AI agent for automatic data cleaning using the ReAct loop.
+
+SETUP
+-----
+
+1. Install dependencies:
+   ./setup.sh
+   
+   OR manually:
+   poetry install
+
+2. Configure API keys:
+   cp .env.example .env
+   
+   Edit .env and add your API key:
+   - For OpenAI: Set OPENAI_API_KEY
+   - For Anthropic: Set ANTHROPIC_API_KEY
+
+3. Test your setup:
+   poetry run python test_setup.py
+
+
+USAGE
+-----
+
+Basic usage:
+   poetry run python examples/basic_usage.py
+
+Custom LLM provider:
+   poetry run python examples/custom_llm.py
+
+
+PROGRAMMATIC USAGE
+------------------
+
+from auto_janitor import AutoJanitor
+
+# Initialize agent
+agent = AutoJanitor()
+
+# Clean a CSV file
+cleaned_df = agent.clean_csv(
+    csv_path="data/input/messy_sales.csv",
+    output_path="data/output/cleaned_sales.csv"
+)
+
+
+HOW IT WORKS
+------------
+
+The agent uses a ReAct (Reasoning + Action) loop:
+
+1. THOUGHT: Agent analyzes the data and plans what to do
+2. ACTION: Agent writes Python code to clean the data
+3. OBSERVATION: Code is executed and results are shown
+4. Repeat until data is clean
+
+The agent automatically handles:
+- Missing values
+- Data type conversions
+- Inconsistent formatting
+- Duplicates
+- Outliers
+- Invalid data
+
+
+EXAMPLE DATA
+------------
+
+A sample messy CSV is provided in:
+   data/input/messy_sales.csv
+
+Issues in this file:
+- Prices with $ symbols and "Free" text
+- Inconsistent date formats
+- Missing values
+- Duplicate rows
+- Invalid email addresses
+- Inconsistent capitalization
+- Negative quantities
+
+
+CONFIGURATION
+-------------
+
+Edit .env to customize:
+
+LLM_PROVIDER=anthropic          # or "openai"
+MODEL_NAME=claude-3-5-sonnet-20241022
+MAX_ITERATIONS=10               # Max ReAct loop iterations
+ENABLE_SANDBOX=true             # Safe code execution
+
+
+TROUBLESHOOTING
+---------------
+
+If you get API errors:
+- Check that your API key is correct in .env
+- Verify you have credits/quota with your provider
+
+If imports fail:
+- Run: poetry install
+- Make sure you're using Python 3.10+
+
+If the agent doesn't clean properly:
+- Increase MAX_ITERATIONS in .env
+- Try a different model
+- Check the messy data isn't too complex
+
+
+NEXT STEPS
+----------
+
+1. Try cleaning your own CSV files
+2. Adjust the system prompt in auto_janitor/config.py
+3. Customize the ReAct loop in auto_janitor/agent.py
+4. Add more sophisticated data profiling
+5. Implement multi-agent workflows with CrewAI or LangGraph
+

@@ -159,13 +159,7 @@ Whether you're fixing bugs, adding new features, improving documentation, or sha
 
 ### Code Style
 
-- Use `black` for formatting
-- Use `ruff` for linting
 - Write tests for new features
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 

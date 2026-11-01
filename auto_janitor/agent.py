@@ -11,6 +11,7 @@ from rich.syntax import Syntax
 from auto_janitor.config import Config
 from auto_janitor.llm import get_llm, BaseLLM
 from auto_janitor.sandbox import PythonSandbox
+from auto_janitor.dry_run import dry_run_report
 
 
 console = Console()
@@ -83,6 +84,15 @@ When you're done, say "CLEANING_COMPLETE" in your thought."""}
             console.print(f"\n[bold green]✓ Saved cleaned data to:[/bold green] {output_path}")
         
         return cleaned_df
+
+    def dry_run(self, csv_path: str) -> dict:
+        """
+        Dry-run report for a CSV file, without calling the LLM and
+        without writing any output. Returns the plan and row counts
+        that clean_csv would start from. See auto_janitor/dry_run.py.
+        """
+        df = pd.read_csv(csv_path)
+        return dry_run_report(df)
 
     def _react_loop(self) -> pd.DataFrame:
         """Execute the ReAct (Reasoning + Action) loop"""

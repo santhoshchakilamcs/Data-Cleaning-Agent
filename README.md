@@ -173,3 +173,40 @@ Whether you're fixing bugs, adding new features, improving documentation, or sha
 
 **💬 Questions or suggestions? Open an issue or start a discussion!**
 
+
+## Dry Run (new)
+
+Before applying any cleaning, review what would happen:
+
+```python
+from auto_janitor import AutoJanitor
+
+janitor = AutoJanitor()
+report = janitor.dry_run("messy_data.csv")
+print(report)
+```
+
+Or directly, without an LLM:
+
+```python
+from auto_janitor.dry_run import dry_run_csv, format_dry_run_report
+
+report = dry_run_csv("messy_data.csv")
+print(format_dry_run_report(report))
+```
+
+The dry-run report contains:
+
+- `row_count_before` and `column_count`
+- `missing_by_column` and `duplicate_rows`
+- `currency_columns` (columns containing `$`, `€`, or `£` symbols)
+- `planned_steps`: the steps the cleaner would take, in order
+- `applied: False`
+
+**Dry run vs apply, honestly stated:** a dry run makes no LLM call,
+changes no rows, and writes no file. It is a deterministic count of
+missing values, duplicates, and currency-symbol columns, plus a
+planned step list. Applying cleaning still goes through the normal
+`clean_csv` / LangGraph path, which does require an LLM key
+(OpenAI GPT-4 or Anthropic Claude, set via `OPENAI_API_KEY` or
+`ANTHROPIC_API_KEY` in a local `.env` file, never committed).
